@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2D Art &amp; Design — Sachin Desai</title>
+  <link rel="stylesheet" href="style.css?v=20260718b" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VY2VFZ4FL2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VY2VFZ4FL2');
+  </script>
+  <style>
+    .project-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto 3.5rem;
+      padding: 0 2rem;
+    }
+
+    .project-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .project-info {
+      flex: 1;
+      padding-top: 0.5rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .project-info h3 span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .project-info ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+      color: #aaa;
+      font-size: 0.93rem;
+      line-height: 1.85;
+      margin-top: 0.8rem;
+    }
+
+    .project-info ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .watch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .watch-link:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    /* Landscape video */
+    .project-video {
+      flex: 1.6;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* Portrait video (YouTube Shorts) */
+    .project-video.portrait {
+      flex: 0 0 360px;
+      aspect-ratio: 9/16;
+      max-height: 580px;
+    }
+
+    .project-video img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .project-video:hover img {
+      transform: scale(1.03);
+      opacity: 0.75;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .project-video:hover .play-btn {
+      background: #ff0000;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 11px 0 11px 20px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+
+    .project-video iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    /* Image gallery for marketing posts */
+    .project-gallery {
+      flex: 1.6;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      align-self: start;
+    }
+
+    .project-gallery a {
+      display: block;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .project-gallery a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s, opacity 0.3s;
+      display: block;
+    }
+
+    .project-gallery a:hover img {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .project-row,
+      .project-row:nth-child(even) {
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 3rem;
+      }
+      .project-video.portrait {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .project-gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body data-title-en="2D Art &amp; Design — Sachin Desai" data-title-ja="2Dアート &amp; デザイン — Sachin Desai">
+
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="images/header_profile.jpg" alt="Sachin Desai">
+      <div>
+        <span>Sachin Desai</span>
+        <small style="display:block;font-size:0.7rem;font-weight:400;" class="nav-brand-subtitle" data-en="Senior Gameplay Animator" data-ja="シニアゲームプレイアニメーター">Senior Gameplay Animator</small>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"><span data-en="About Me" data-ja="私について">About Me</span></a></li>
+      <li><a href="3d-animation.html"><span data-en="3D Animation" data-ja="3Dアニメーション">3D Animation</span></a></li>
+      <li><a href="ai-pipeline.html"><span data-en="AI Lab" data-ja="AIラボ">AI Lab</span></a></li>
+      <li><a href="2d-animation.html" class="active"><span data-en="2D Art &amp; Design" data-ja="2Dアート &amp; デザイン">2D Art &amp; Design</span></a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn lang-btn--active" data-lang="en" aria-pressed="true">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ja" aria-pressed="false">日本語</button>
+    </div>
+    <div class="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+
+  <!-- Character Animation - Spine -->
+  <div class="project-row" style="margin-top:2rem;">
+    <div class="project-info">
+      <h3><span data-en="Character Animation" data-ja="キャラクターアニメーション">Character Animation</span> <span data-en="— Spine" data-ja="— Spine">— Spine</span></h3>
+      <ul>
+        <li data-en="Rigged and animated a chibi-style character in Spine" data-ja="Spineでチビスタイルのキャラクターをリグ・アニメート">Rigged and animated a chibi-style character in Spine</li>
+        <li data-en="Created idle, walk and action cycles" data-ja="アイドル、歩行、アクションサイクルを制作">Created idle, walk and action cycles</li>
+        <li data-en="Clean bone setup with mesh deformation" data-ja="メッシュデフォーメーションを使ったクリーンなボーン構成">Clean bone setup with mesh deformation</li>
+      </ul>
+      <a href="https://youtu.be/IrayIHEj4z4" target="_blank" class="watch-link" data-en="▶ Watch animation" data-ja="▶ アニメーションを見る">▶ Watch animation</a>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'IrayIHEj4z4')">
+      <img src="https://img.youtube.com/vi/IrayIHEj4z4/maxresdefault.jpg" alt="Character Animation Spine" onerror="this.src='https://img.youtube.com/vi/IrayIHEj4z4/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Frog Pile - Character Animation -->
+  <div class="project-row">
+    <div class="project-info">
+      <h3><span data-en="Character Animation" data-ja="キャラクターアニメーション">Character Animation</span> <span data-en="— Frog Pile, Spine" data-ja="— Frog Pile、Spine">— Frog Pile, Spine</span></h3>
+      <ul>
+        <li data-en="Rigged and animated a hero character in Spine for the Frog Pile mobile game" data-ja="FrogPileモバイルゲーム向けにSpineでヒーローキャラクターをリグ・アニメート">Rigged and animated a hero character in Spine for the Frog Pile mobile game</li>
+        <li data-en="Created idle, jump and action cycles" data-ja="アイドル、ジャンプ、アクションサイクルを制作">Created idle, jump and action cycles</li>
+        <li data-en="Clean bone setup with mesh deformation" data-ja="メッシュデフォーメーションを使ったクリーンなボーン構成">Clean bone setup with mesh deformation</li>
+      </ul>
+      <a href="https://youtube.com/shorts/mW0GQlIyyiE" target="_blank" class="watch-link" data-en="▶ Watch animation" data-ja="▶ アニメーションを見る">▶ Watch animation</a>
+    </div>
+    <div class="project-video portrait" onclick="playVideo(this,'mW0GQlIyyiE')">
+      <img src="https://img.youtube.com/vi/mW0GQlIyyiE/maxresdefault.jpg" alt="Frog Pile Character Animation Spine" onerror="this.src='https://img.youtube.com/vi/mW0GQlIyyiE/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Character Rigging/Animation - Spine -->
+  <div class="project-row">
+    <div class="project-info">
+      <h3><span data-en="Character Rigging/Animation" data-ja="キャラクターリグ/アニメーション">Character Rigging/Animation</span> <span data-en="— Spine" data-ja="— Spine">— Spine</span></h3>
+      <ul>
+        <li data-en="Rigged and animated an enemy character in Spine" data-ja="Spineで敵キャラクターをリグ・アニメート">Rigged and animated an enemy character in Spine</li>
+        <li data-en="Created idle, attack and death cycles" data-ja="アイドル、攻撃、死亡サイクルを制作">Created idle, attack and death cycles</li>
+        <li data-en="Clean bone setup with mesh deformation" data-ja="メッシュデフォーメーションを使ったクリーンなボーン構成">Clean bone setup with mesh deformation</li>
+      </ul>
+      <a href="https://youtu.be/DIMoyw68S-o" target="_blank" class="watch-link" data-en="▶ Watch animation" data-ja="▶ アニメーションを見る">▶ Watch animation</a>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'DIMoyw68S-o')">
+      <img src="https://img.youtube.com/vi/DIMoyw68S-o/maxresdefault.jpg" alt="Character Rigging Animation Spine" onerror="this.src='https://img.youtube.com/vi/DIMoyw68S-o/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Slot Animation - Spine -->
+  <div class="project-row">
+    <div class="project-info">
+      <h3><span data-en="Slot Animation" data-ja="スロットアニメーション">Slot Animation</span> <span data-en="— Spine" data-ja="— Spine">— Spine</span></h3>
+      <ul>
+        <li data-en="Animated a glowing crystal/stone using Spine slot animation" data-ja="Spineスロットアニメーションで光るクリスタル/ストーンをアニメート">Animated a glowing crystal/stone using Spine slot animation</li>
+        <li data-en="Used slot attachments and color timeline for glow effects" data-ja="スロットアタッチメントとカラータイムラインでグロー効果を表現">Used slot attachments and color timeline for glow effects</li>
+        <li data-en="Smooth looping idle animation with particle-style sparkles" data-ja="パーティクルスタイルのきらめきを含むスムーズなループアイドルアニメーション">Smooth looping idle animation with particle-style sparkles</li>
+      </ul>
+      <a href="https://youtu.be/RE-x54GvGMI" target="_blank" class="watch-link" data-en="▶ Watch animation" data-ja="▶ アニメーションを見る">▶ Watch animation</a>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'RE-x54GvGMI')">
+      <img src="https://img.youtube.com/vi/RE-x54GvGMI/maxresdefault.jpg" alt="Slot Animation Spine" onerror="this.src='https://img.youtube.com/vi/RE-x54GvGMI/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Unity Sprite Animation -->
+  <div class="project-row">
+    <div class="project-info">
+      <h3><span data-en="Unity Sprite Animation" data-ja="Unityスプライトアニメーション">Unity Sprite Animation</span> <span data-en="— Avatar Setup" data-ja="— アバターセットアップ">— Avatar Setup</span></h3>
+      <ul>
+        <li data-en="Set up and animated a 2D character avatar in Unity" data-ja="Unityで2Dキャラクターアバターをセットアップ・アニメート">Set up and animated a 2D character avatar in Unity</li>
+        <li data-en="Configured sprite rig with Unity's 2D animation package" data-ja="Unityの2Dアニメーションパッケージでスプライトリグを設定">Configured sprite rig with Unity's 2D animation package</li>
+        <li data-en="Avatar ready for in-game use with modular costume system" data-ja="モジュラーコスチュームシステムでゲーム内使用可能なアバター">Avatar ready for in-game use with modular costume system</li>
+      </ul>
+      <a href="https://youtube.com/shorts/8HOHpCe7tus" target="_blank" class="watch-link" data-en="▶ Watch animation" data-ja="▶ アニメーションを見る">▶ Watch animation</a>
+    </div>
+    <div class="project-video portrait" onclick="playVideo(this,'8HOHpCe7tus')">
+      <img src="https://img.youtube.com/vi/8HOHpCe7tus/maxresdefault.jpg" alt="Unity Sprite Animation" onerror="this.src='https://img.youtube.com/vi/8HOHpCe7tus/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Growtopia Marketing Materials -->
+  <div class="project-row">
+    <div class="project-info">
+      <h3><span data-en="Growtopia Marketing" data-ja="グロウトピア マーケティング">Growtopia Marketing</span> <span data-en="— Social Media &amp; In-Game" data-ja="— ソーシャルメディア &amp; ゲーム内">— Social Media &amp; In-Game</span></h3>
+      <ul>
+        <li data-en="Created seasonal social media banners for Facebook and Instagram — events, store launches and key art" data-ja="Facebook・Instagram向けの季節イベント、ストアローンチ、キーアートのSNSバナーを制作">Created seasonal social media banners for Facebook and Instagram — events, store launches and key art</li>
+        <li data-en="Designed in-game UI and background assets including themed main menu screens" data-ja="テーマ付きメインメニュー画面などゲーム内UIと背景アセットをデザイン">Designed in-game UI and background assets including themed main menu screens</li>
+        <li data-en="Produced monthly calendar graphics for in-game event scheduling" data-ja="ゲーム内イベントスケジュール用の月次カレンダーグラフィックを制作">Produced monthly calendar graphics for in-game event scheduling</li>
+        <li data-en="Built store promotion visuals and voucher day banners using in-game assets" data-ja="ゲーム内アセットを活用したストアプロモーションビジュアルとバウチャーデーバナーを制作">Built store promotion visuals and voucher day banners using in-game assets</li>
+        <li data-en="Adapted assets across multiple platform formats: Facebook, Instagram, Mobile, Steam" data-ja="Facebook、Instagram、モバイル、Steamなど複数のプラットフォームフォーマットに対応">Adapted assets across multiple platform formats: Facebook, Instagram, Mobile, Steam</li>
+      </ul>
+    </div>
+    <div class="project-gallery">
+      <a href="images/growtopia/gt_stpatrick.png" target="_blank"><img src="images/growtopia/gt_stpatrick.png" alt="St Patrick Key Art"></a>
+      <a href="images/growtopia/gt_july25.png" target="_blank"><img src="images/growtopia/gt_july25.png" alt="July 2025 Social"></a>
+      <a href="images/growtopia/gt_auction_block.png" target="_blank"><img src="images/growtopia/gt_auction_block.png" alt="Auction Block"></a>
+      <a href="images/growtopia/gt_valentine.png" target="_blank"><img src="images/growtopia/gt_valentine.png" alt="Valentine CRM"></a>
+      <a href="images/growtopia/gt_calendar.png" target="_blank"><img src="images/growtopia/gt_calendar.png" alt="September Calendar"></a>
+      <a href="images/growtopia/gt_voucher.png" target="_blank"><img src="images/growtopia/gt_voucher.png" alt="Voucher Dayz"></a>
+      <a href="images/growtopia/gt_mobile.png" target="_blank"><img src="images/growtopia/gt_mobile.png" alt="Mobile Banner"></a>
+      <a href="images/growtopia/gt_mailbox.png" target="_blank"><img src="images/growtopia/gt_mailbox.png" alt="Core Mailbox"></a>
+      <a href="images/growtopia/gt_pet_bottles.png" target="_blank"><img src="images/growtopia/gt_pet_bottles.png" alt="Pet Bottles"></a>
+      <a href="images/growtopia/gt_menu_bg.png" target="_blank"><img src="images/growtopia/gt_menu_bg.png" alt="Main Menu Background"></a>
+      <a href="images/growtopia/gt_menu_bg_beta.png" target="_blank"><img src="images/growtopia/gt_menu_bg_beta.png" alt="Main Menu Background Beta"></a>
+      <a href="images/growtopia/gt_party_projector.png" target="_blank"><img src="images/growtopia/gt_party_projector.png" alt="Party Projector Store"></a>
+      <a href="images/growtopia/gt_wings_gaia.png" target="_blank"><img src="images/growtopia/gt_wings_gaia.png" alt="Wings of Gaia Store"></a>
+      <a href="images/growtopia/gt_steam_banner.png" target="_blank"><img src="images/growtopia/gt_steam_banner.png" alt="Steam Banner"></a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Sachin Desai &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/sachindesai7" target="_blank">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="index.html" data-en="Contact" data-ja="お問い合わせ">Contact</a>
+  </footer>
+
+  <script src="i18n.js?v=20260718"></script>
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('navLinks');
+      var hamburger = document.querySelector('.hamburger');
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+
+    function playVideo(el, videoId) {
+      el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+      el.style.cursor = 'default';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.project-row').forEach(function(row, i) {
+        row.classList.add(i % 2 === 0 ? 'row-odd' : 'row-even');
+      });
+
+      var isMobile = window.innerWidth <= 768;
+      if (isMobile) return;
+      document.querySelectorAll('.project-video[onclick]').forEach(function(el) {
+        var match = el.getAttribute('onclick').match(/'([^']+)'\)/);
+        if (!match) return;
+        var videoId = match[1];
+        el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId +
+          '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
+          '&controls=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        el.style.cursor = 'default';
+      });
+    });
+  </script>
+</body>
+</html>

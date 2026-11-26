@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Lab — Sachin Desai</title>
+  <link rel="stylesheet" href="style.css?v=20260718b" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VY2VFZ4FL2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VY2VFZ4FL2');
+  </script>
+  <style>
+    .project-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+      padding: 0 2rem;
+    }
+
+    .project-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .project-info {
+      flex: 1;
+      padding-top: 0.5rem;
+    }
+
+    .project-info h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-info h2 span {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .project-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 2rem 0 0.3rem;
+    }
+
+    .project-info p {
+      color: #aaa;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin-top: 0.6rem;
+    }
+
+    .project-info ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+      color: #aaa;
+      font-size: 0.93rem;
+      line-height: 1.85;
+      margin-top: 0.8rem;
+    }
+
+    .project-info ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .style-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 3px;
+      padding: 0.15rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Video block */
+    .project-video {
+      flex: 1.6;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .project-video img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .project-video:hover img {
+      transform: scale(1.03);
+      opacity: 0.75;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .project-video:hover .play-btn {
+      background: #ff0000;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 11px 0 11px 20px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+
+    .project-video iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    /* Image gallery */
+    .image-gallery {
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .image-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+    }
+
+    .game-header.row-even .game-tag {
+      color: #061014;
+      background: var(--accent2);
+      border: 1px solid rgba(232, 160, 32, 0.5);
+    }
+
+    .game-header.row-odd .game-tag {
+      color: #111;
+      background: var(--accent);
+      border: 1px solid rgba(0, 180, 216, 0.35);
+    }
+
+    .social-play-feature {
+      flex: 1.15;
+      aspect-ratio: 16/10;
+      background: #05080a;
+      border: 2px solid var(--accent);
+      box-shadow: 5px 5px 0 rgba(232, 160, 32, 0.22);
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .project-row.row-even .social-play-feature {
+      border-color: var(--accent2);
+      box-shadow: 5px 5px 0 rgba(0, 180, 216, 0.18);
+    }
+
+    .social-play-feature img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 0.45rem;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .social-play-feature:hover img {
+      transform: scale(1.025);
+      opacity: 0.9;
+    }
+
+    .social-play-gallery.image-gallery {
+      padding-top: 1rem;
+      padding-bottom: 1.8rem;
+    }
+
+    .social-play-gallery .image-gallery-grid {
+      gap: 1rem;
+    }
+
+    .social-play-gallery .gallery-img {
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      background: #05080a;
+      padding: 0.4rem;
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      box-shadow: 4px 4px 0 rgba(232, 160, 32, 0.18);
+    }
+
+    .social-play-gallery.row-even .gallery-img {
+      border-color: var(--accent2);
+      box-shadow: 4px 4px 0 rgba(0, 180, 216, 0.16);
+    }
+
+    .social-play-gallery.row-even .gallery-img:hover {
+      border-color: var(--accent2);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    /* Portrait video (YouTube Shorts 9:16) */
+    .project-video-portrait {
+      flex: 0 0 260px;
+      aspect-ratio: 9/16;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .project-video-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .project-video-portrait:hover img {
+      transform: scale(1.03);
+      opacity: 0.75;
+    }
+
+    .project-video-portrait:hover .play-btn {
+      background: #ff0000;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .project-video-portrait iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    /* Section divider */
+    .style-divider {
+      max-width: 1100px;
+      margin: 0.5rem auto 2.5rem;
+      padding: 0 2rem;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Game header */
+    .game-header {
+      max-width: 1100px;
+      margin: 2rem auto 1.5rem;
+      padding: 0 2rem;
+    }
+
+    .game-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-header p {
+      color: #aaa;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 780px;
+    }
+
+    .game-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #111;
+      background: var(--accent);
+      border-radius: 3px;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .style-section-heading {
+      max-width: 1100px;
+      margin: 2.5rem auto 1rem;
+      padding: 0 2rem;
+    }
+
+    .style-section-heading h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-row,
+      .project-row:nth-child(even) {
+        flex-direction: column;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .image-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-title-en="AI Lab — Sachin Desai" data-title-ja="AIラボ — Sachin Desai">
+
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="images/header_profile.jpg" alt="Sachin Desai">
+      <div>
+        <span>Sachin Desai</span>
+        <small style="display:block;font-size:0.7rem;font-weight:400;" class="nav-brand-subtitle" data-en="Senior Gameplay Animator" data-ja="シニアゲームプレイアニメーター">Senior Gameplay Animator</small>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"><span data-en="About Me" data-ja="私について">About Me</span></a></li>
+      <li><a href="3d-animation.html"><span data-en="3D Animation" data-ja="3Dアニメーション">3D Animation</span></a></li>
+      <li><a href="ai-pipeline.html" class="active"><span data-en="AI Lab" data-ja="AIラボ">AI Lab</span></a></li>
+      <li><a href="2d-animation.html"><span data-en="2D Art &amp; Design" data-ja="2Dアート &amp; デザイン">2D Art &amp; Design</span></a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn lang-btn--active" data-lang="en" aria-pressed="true">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="ja" aria-pressed="false">日本語</button>
+    </div>
+    <div class="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── SMITHING MASTER ── -->
+  <div class="game-header" style="margin-top:2rem;">
+    <span class="game-tag" data-en="Game Prototype · Claude AI" data-ja="ゲームプロトタイプ · Claude AI">Game Prototype · Claude AI</span>
+    <h2 data-en="Smithing Master" data-ja="スミシング・マスター">Smithing Master</h2>
+    <p data-en="Built a fully playable RPG prototype using Claude as the sole development tool — presented at the Lila Games internal Game Jam. From smithing table to boss fights, the entire game loop was designed and coded through AI-assisted iteration." data-ja="Claudeを唯一の開発ツールとして使用した完全プレイ可能なRPGプロトタイプを制作し、Lila Games社内ゲームジャムで発表。鍛冶台からボス戦まで、ゲームループ全体をAIアシスト型のイテレーションで設計・開発しました。">Built a fully playable RPG prototype using Claude as the sole development tool — presented at the Lila Games internal Game Jam. From smithing table to boss fights, the entire game loop was designed and coded through AI-assisted iteration.</p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Built with —" data-ja="使用ツール —">Built with —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Claude (Anthropic)</span>
+    </p>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Forge weapons at the smithing table to boost your ATK and HP stats" data-ja="鍛冶台で武器を鍛えてATKとHPのステータスを強化">Forge weapons at the smithing table to boost your ATK and HP stats</li>
+        <li data-en="Enter the Adventure map and battle through 18 nodes across 3 escalating zones" data-ja="アドベンチャーマップに入り、難易度が上がる3ゾーンの18ノードを戦い抜け">Enter the Adventure map and battle through 18 nodes across 3 escalating zones</li>
+        <li data-en="Spells and potions auto-pop when your HP hits 20% — last-moment saves" data-ja="HPが20%になると呪文とポーションが自動発動 — ギリギリの救済">Spells and potions auto-pop when your HP hits 20% — last-moment saves</li>
+        <li data-en="Defeat zone bosses to unlock the next area and earn rare rune rewards" data-ja="ゾーンボスを倒して次エリアを解放し、レアルーン報酬を獲得">Defeat zone bosses to unlock the next area and earn rare rune rewards</li>
+      </ul>
+    </div>
+    <div class="project-video-portrait" onclick="playVideo(this,'ko8OLhrGNoA')">
+      <img src="https://img.youtube.com/vi/ko8OLhrGNoA/maxresdefault.jpg" alt="Smithing Master Pixel Art Prototype" onerror="this.src='https://img.youtube.com/vi/ko8OLhrGNoA/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- ── SOCIAL PLAY CHARACTER SELECTION ── -->
+  <div class="game-header social-play-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="AI-Assisted 2D Concept Design" data-ja="AI支援 2Dコンセプトデザイン">AI-Assisted 2D Concept Design</span>
+    <h2 data-en="Social Play Character Selection" data-ja="Social Play キャラクター選択コンセプト">Social Play Character Selection</h2>
+    <p data-en="Character-selection concepts for a social play game, created through ChatGPT and Gemini image iteration. The focus was not only image generation, but art direction: readable silhouettes, fantasy-musician archetypes, costume language, pose clarity, and a roster that could work inside a game selection screen." data-ja="ChatGPTとGeminiでの画像イテレーションを使って制作した、ソーシャルプレイゲーム向けのキャラクター選択コンセプトです。単なる画像生成ではなく、アートディレクションとして、読みやすいシルエット、ファンタジー音楽家のアーキタイプ、衣装の方向性、ポーズの明確さ、選択画面で機能するキャラクターロスターを重視しました。">Character-selection concepts for a social play game, created through ChatGPT and Gemini image iteration. The focus was not only image generation, but art direction: readable silhouettes, fantasy-musician archetypes, costume language, pose clarity, and a roster that could work inside a game selection screen.</p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Images —" data-ja="画像 —">Images —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> ChatGPT &nbsp;·&nbsp; Gemini</span>
+      &nbsp;&nbsp;
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Focus —" data-ja="重点 —">Focus —</span>
+      <span style="color:#aaa;font-size:0.85rem;" data-en="Character roster · Silhouette · Selection UI" data-ja="キャラクターロスター · シルエット · 選択UI">Character roster · Silhouette · Selection UI</span>
+    </p>
+  </div>
+
+  <div class="project-row social-play-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Curated 6 final concepts from 12 generated options to keep the portfolio edit focused" data-ja="12枚の生成候補から6枚の最終コンセプトを選び、ポートフォリオとして見やすく整理">Curated 6 final concepts from 12 generated options to keep the portfolio edit focused</li>
+        <li data-en="Explored two readable archetype families: expressive bard performers and heavier fantasy-warrior musicians" data-ja="表情豊かなバード系パフォーマーと、重厚なファンタジー戦士系ミュージシャンという2つの読みやすいアーキタイプを検討">Explored two readable archetype families: expressive bard performers and heavier fantasy-warrior musicians</li>
+        <li data-en="Checked character silhouettes, costume rhythm, props, and pose clarity for small selection-card use" data-ja="小さな選択カードでの使用を想定し、シルエット、衣装のリズム、プロップ、ポーズの明確さを確認">Checked character silhouettes, costume rhythm, props, and pose clarity for small selection-card use</li>
+        <li data-en="Used AI output as a concept-development stage, with human selection and direction deciding the final set" data-ja="AI出力をコンセプト開発段階として使い、最終セットは人の選定とディレクションで決定">Used AI output as a concept-development stage, with human selection and direction deciding the final set</li>
+      </ul>
+    </div>
+    <div class="social-play-feature" onclick="openLightbox('images/social-play/character-selection/bard-performer.png')">
+      <img src="images/social-play/character-selection/bard-performer.png" alt="Social Play bard performer character concept">
+    </div>
+  </div>
+
+  <div class="image-gallery social-play-gallery">
+    <div class="image-gallery-grid">
+      <img class="gallery-img" src="images/social-play/character-selection/bard-performer.png" alt="Social Play bard performer concept" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/social-play/character-selection/dwarf-warrior-card.png" alt="Social Play dwarf warrior character card" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/social-play/character-selection/dwarf-bard-card.png" alt="Social Play dwarf bard character card" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/social-play/character-selection/dwarf-axe-action.png" alt="Social Play dwarf axe action concept" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/social-play/character-selection/dwarf-music-action.png" alt="Social Play dwarf musician action concept" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/social-play/character-selection/bard-axe-character.png" alt="Social Play bard axe character concept" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- ── OUTBOUND ── -->
+  <div class="game-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="AI Art Exploration" data-ja="AIアート探求">AI Art Exploration</span>
+    <h2 data-en="Outbound" data-ja="アウトバウンド">Outbound</h2>
+    <p data-en="Zombie hunter game concept — player navigates a constant-shooter vehicle through extraction zones, looting and surviving. Game progression includes vehicle upgrades, weapon upgrades, pilot unlocks and zone escalation. Two AI-generated art styles explored to find the game's visual identity." data-ja="ゾンビハンターゲームのコンセプト — プレイヤーは常時射撃型の車両で抽出ゾーンを進みながら、戦利品を集め生き延びます。ゲームの進行には車両・武器のアップグレード、パイロットのアンロック、ゾーンのエスカレーションが含まれます。ゲームのビジュアルアイデンティティを探るためにAI生成の2つのアートスタイルを検討しました。">Zombie hunter game concept — player navigates a constant-shooter vehicle through extraction zones, looting and surviving. Game progression includes vehicle upgrades, weapon upgrades, pilot unlocks and zone escalation. Two AI-generated art styles explored to find the game's visual identity.</p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Images —" data-ja="画像 —">Images —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> ChatGPT &nbsp;·&nbsp; Gemini &nbsp;·&nbsp; Claude</span>
+      &nbsp;&nbsp;
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Video —" data-ja="動画 —">Video —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Seedance 2.0</span>
+    </p>
+  </div>
+
+  <!-- Wild Wild West -->
+  <div class="style-section-heading">
+    <h3 data-en="Style 01 — Wild Wild West" data-ja="スタイル01 — ワイルド・ウェスト">Style 01 — Wild Wild West</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Semi-realistic cartoony western aesthetic" data-ja="半リアルなカートゥーン調ウェスタンスタイル">Semi-realistic cartoony western aesthetic</li>
+        <li data-en="Iron Sheriff stagecoach-tank as the player vehicle" data-ja="プレイヤー車両はアイアン・シェリフの幌馬車型タンク">Iron Sheriff stagecoach-tank as the player vehicle</li>
+        <li data-en="Dusty desert environments with warm amber palette" data-ja="温かみのあるアンバーパレットの砂漠環境">Dusty desert environments with warm amber palette</li>
+        <li data-en="Undead outlaw enemies, wanted-poster UI framing" data-ja="アンデッドのアウトロー敵キャラクター、指名手配ポスター風UI">Undead outlaw enemies, wanted-poster UI framing</li>
+        <li data-en="Key art, gameplay mockups, UI frames and app icon generated with AI" data-ja="キーアート、ゲームプレイモックアップ、UIフレーム、アプリアイコンをAIで生成">Key art, gameplay mockups, UI frames and app icon generated with AI</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'ebJL4rr6Eq8')">
+      <img src="https://img.youtube.com/vi/ebJL4rr6Eq8/maxresdefault.jpg" alt="Outbound Wild Wild West" onerror="this.src='https://img.youtube.com/vi/ebJL4rr6Eq8/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <div class="image-gallery-grid">
+      <img class="gallery-img" src="images/outbound/wild-wild-west/ww-01.png" alt="Wild Wild West concept 1" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/wild-wild-west/ww-02.jpg" alt="Wild Wild West concept 2" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/wild-wild-west/ww-03.png" alt="Wild Wild West concept 3" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/wild-wild-west/ww-04.png" alt="Wild Wild West concept 4" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/wild-wild-west/ww-05.jpg" alt="Wild Wild West concept 5" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <hr class="style-divider">
+
+  <!-- Dragon Hunter -->
+  <div class="style-section-heading">
+    <h3 data-en="Style 02 — Dragon Hunter" data-ja="スタイル02 — ドラゴンハンター">Style 02 — Dragon Hunter</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Dark fantasy semi-realistic art style" data-ja="ダークファンタジー半リアルなアートスタイル">Dark fantasy semi-realistic art style</li>
+        <li data-en="Dragon Forge war chariot as the player vehicle" data-ja="プレイヤー車両はドラゴン・フォージの戦闘チャリオット">Dragon Forge war chariot as the player vehicle</li>
+        <li data-en="Volcanic, ruined fortress environments — deep red and ember palette" data-ja="火山地帯の廃城環境 — 深紅と残り火のパレット">Volcanic, ruined fortress environments — deep red and ember palette</li>
+        <li data-en="Dragon and demon enemies with arcane energy weapons" data-ja="秘術エネルギー武器を持つドラゴンとデーモンの敵">Dragon and demon enemies with arcane energy weapons</li>
+        <li data-en="Key art, gameplay mockups, UI frames and app icon generated with AI" data-ja="キーアート、ゲームプレイモックアップ、UIフレーム、アプリアイコンをAIで生成">Key art, gameplay mockups, UI frames and app icon generated with AI</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'mRAIBY3tS2M')">
+      <img src="https://img.youtube.com/vi/mRAIBY3tS2M/maxresdefault.jpg" alt="Outbound Dragon Hunter" onerror="this.src='https://img.youtube.com/vi/mRAIBY3tS2M/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <div class="image-gallery-grid">
+      <img class="gallery-img" src="images/outbound/dragon-hunter/dh-01.png" alt="Dragon Hunter concept 1" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/dragon-hunter/dh-02.png" alt="Dragon Hunter concept 2" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/dragon-hunter/dh-03.png" alt="Dragon Hunter concept 3" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/dragon-hunter/dh-04.png" alt="Dragon Hunter concept 4" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/outbound/dragon-hunter/dh-05.png" alt="Dragon Hunter concept 5" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- ── BALL X PIT ── -->
+  <div class="game-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="AI Art Exploration" data-ja="AIアート探求">AI Art Exploration</span>
+    <h2 data-en="Ball X Pit" data-ja="ボール×ピット">Ball X Pit</h2>
+    <p data-en="Casual arcade game concept — player launches balls to clear waves of enemies and obstacles across increasingly challenging levels. Two distinct art styles were explored using AI image generation to define the game's visual tone and target audience." data-ja="カジュアルアーケードゲームのコンセプト — プレイヤーはボールを発射して、難易度が上がる各レベルで敵や障害物の波を一掃します。ゲームのビジュアルトーンとターゲット層を定めるため、AI画像生成で2つのアートスタイルを探求しました。">Casual arcade game concept — player launches balls to clear waves of enemies and obstacles across increasingly challenging levels. Two distinct art styles were explored using AI image generation to define the game's visual tone and target audience.</p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Images —" data-ja="画像 —">Images —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> ChatGPT &nbsp;·&nbsp; Gemini &nbsp;·&nbsp; Claude</span>
+      &nbsp;&nbsp;
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Video —" data-ja="動画 —">Video —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Seedance 2.0</span>
+    </p>
+  </div>
+
+  <!-- Gummy Blaster -->
+  <div class="style-section-heading">
+    <h3 data-en="Style 01 — Gummy Blaster" data-ja="スタイル01 — グミブラスター">Style 01 — Gummy Blaster</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Bright, candy-pop art style with vibrant gummy colours" data-ja="鮮やかなグミカラーのブライト・キャンディポップスタイル">Bright, candy-pop art style with vibrant gummy colours</li>
+        <li data-en="Cheerful enemies — gummy bears, jelly blobs and candy creatures" data-ja="陽気な敵キャラクター — グミベア、ジェリーブロブ、キャンディクリーチャー">Cheerful enemies — gummy bears, jelly blobs and candy creatures</li>
+        <li data-en="High-contrast UI with bold outlines and playful typography" data-ja="太いアウトラインとポップなタイポグラフィのハイコントラストUI">High-contrast UI with bold outlines and playful typography</li>
+        <li data-en="Targets casual players and younger audiences" data-ja="カジュアルプレイヤーと若年層をターゲット">Targets casual players and younger audiences</li>
+        <li data-en="Gameplay mockups, key art, store icons and UI frames generated with AI" data-ja="ゲームプレイモックアップ、キーアート、ストアアイコン、UIフレームをAIで生成">Gameplay mockups, key art, store icons and UI frames generated with AI</li>
+      </ul>
+    </div>
+    <div class="project-video-portrait" onclick="playVideo(this,'AXJtELfmXVo')">
+      <img src="https://img.youtube.com/vi/AXJtELfmXVo/maxresdefault.jpg" alt="Ball X Pit Gummy Blaster" onerror="this.src='https://img.youtube.com/vi/AXJtELfmXVo/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <div class="image-gallery-grid">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-01.jpg" alt="Gummy Blaster concept 1" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-02.jpg" alt="Gummy Blaster concept 2" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-03.jpg" alt="Gummy Blaster concept 3" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-04.jpg" alt="Gummy Blaster concept 4" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-05.jpg" alt="Gummy Blaster concept 5" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/gummy-blaster/gb-06.jpg" alt="Gummy Blaster concept 6" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <hr class="style-divider">
+
+  <!-- Jungle Pixel -->
+  <div class="style-section-heading">
+    <h3 data-en="Style 02 — Jungle Pixel" data-ja="スタイル02 — ジャングルピクセル">Style 02 — Jungle Pixel</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Retro pixel art aesthetic set in a lush jungle environment" data-ja="緑豊かなジャングル環境のレトロピクセルアートスタイル">Retro pixel art aesthetic set in a lush jungle environment</li>
+        <li data-en="Pixelated animals and tribal enemies with chiptune-inspired UI" data-ja="チップチューン調UIとピクセル化された動物・部族の敵">Pixelated animals and tribal enemies with chiptune-inspired UI</li>
+        <li data-en="Deep greens, earthy browns and warm highlight palette" data-ja="深緑、土のブラウン、暖かいハイライトのパレット">Deep greens, earthy browns and warm highlight palette</li>
+        <li data-en="Targets nostalgic and mid-core players who enjoy pixel art games" data-ja="ピクセルアートゲームを好むノスタルジックなミッドコアプレイヤーをターゲット">Targets nostalgic and mid-core players who enjoy pixel art games</li>
+        <li data-en="Gameplay mockups, key art, store icons and UI frames generated with AI" data-ja="ゲームプレイモックアップ、キーアート、ストアアイコン、UIフレームをAIで生成">Gameplay mockups, key art, store icons and UI frames generated with AI</li>
+      </ul>
+    </div>
+    <div class="project-video-portrait" onclick="playVideo(this,'MzrTzJqk5DU')">
+      <img src="https://img.youtube.com/vi/MzrTzJqk5DU/maxresdefault.jpg" alt="Ball X Pit Jungle Pixel" onerror="this.src='https://img.youtube.com/vi/MzrTzJqk5DU/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <div class="image-gallery-grid">
+      <img class="gallery-img" src="images/ballxpit/jungle-pixel/jp-01.jpg" alt="Jungle Pixel concept 1" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/jungle-pixel/jp-02.jpg" alt="Jungle Pixel concept 2" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/jungle-pixel/jp-03.jpg" alt="Jungle Pixel concept 3" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/jungle-pixel/jp-04.jpg" alt="Jungle Pixel concept 4" onclick="openLightbox(this.src)">
+      <img class="gallery-img" src="images/ballxpit/jungle-pixel/jp-05.jpg" alt="Jungle Pixel concept 5" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+
+  <!-- ── COMFYUI + TRELLIS ── -->
+  <div class="game-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="Local AI · 3D Research" data-ja="ローカルAI · 3Dリサーチ">Local AI · 3D Research</span>
+    <h2 data-en="ComfyUI + Trellis 2.0" data-ja="ComfyUI + トレリス 2.0">ComfyUI + Trellis 2.0</h2>
+    <p data-html="true" data-en="Explored running a fully <strong style=&quot;color:#fff;&quot;>local AI 3D generation pipeline</strong> — no cloud, no API costs, no data leaving the studio. Using Microsoft Research's Trellis 2.0 image-to-3D model inside a ComfyUI node graph, a single reference image is converted into a detailed 3D mesh with PBR textures in minutes. The result is then brought into Blender to compare the raw AI mesh against a manually retopologised version — measuring the real gap between what the model gives you and what production actually needs." data-ja="クラウドなし、APIコストなし、スタジオ外へのデータ送信なしの完全な<strong style=&quot;color:#fff;&quot;>ローカルAI 3D生成パイプライン</strong>を検証しました。ComfyUIノードグラフ内でMicrosoft ResearchのTrellis 2.0 画像→3Dモデルを使い、1枚のリファレンス画像から詳細な3DメッシュとPBRテクスチャを数分で生成。その結果をBlenderに取り込み、生AIメッシュと手動リトポロジー版を比較し、モデルの出力とプロダクションの実際のニーズのギャップを計測しました。">Explored running a fully <strong style="color:#fff;">local AI 3D generation pipeline</strong> — no cloud, no API costs, no data leaving the studio. Using Microsoft Research's Trellis 2.0 image-to-3D model inside a ComfyUI node graph, a single reference image is converted into a detailed 3D mesh with PBR textures in minutes. The result is then brought into Blender to compare the raw AI mesh against a manually retopologised version — measuring the real gap between what the model gives you and what production actually needs.</p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="3D Generation —" data-ja="3D生成 —">3D Generation —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Trellis 2.0 (Microsoft Research) &nbsp;·&nbsp; ComfyUI</span>
+      &nbsp;&nbsp;
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Cleanup —" data-ja="クリーンアップ —">Cleanup —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Blender &nbsp;·&nbsp; Manual Retopo</span>
+    </p>
+  </div>
+
+  <div class="style-section-heading">
+    <h3 data-en="01 — Image to 3D with ComfyUI + Trellis" data-ja="01 — ComfyUI + Trellisで画像を3Dへ">01 — Image to 3D with ComfyUI + Trellis</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Trellis 2.0 runs entirely locally on GPU — zero per-generation cost once set up" data-ja="Trellis 2.0はGPU上で完全ローカル動作 — セットアップ後は生成コストゼロ">Trellis 2.0 runs entirely locally on GPU — zero per-generation cost once set up</li>
+        <li data-en="ComfyUI node graph controls the full pipeline: image input → mesh → texture → export" data-ja="ComfyUIノードグラフがパイプライン全体を制御：画像入力 → メッシュ → テクスチャ → エクスポート">ComfyUI node graph controls the full pipeline: image input → mesh → texture → export</li>
+        <li data-en="Generates high-detail source mesh with PBR textures from a single reference image" data-ja="1枚のリファレンス画像からPBRテクスチャ付き高精細ソースメッシュを生成">Generates high-detail source mesh with PBR textures from a single reference image</li>
+        <li data-en="Output in minutes vs. hours for a hand-modelled equivalent base mesh" data-ja="手動モデリングの等価ベースメッシュの数時間と比べ数分で出力">Output in minutes vs. hours for a hand-modelled equivalent base mesh</li>
+        <li data-en="No internet connection required — suitable for NDA-protected studio assets" data-ja="インターネット接続不要 — NDA保護のスタジオアセットにも対応">No internet connection required — suitable for NDA-protected studio assets</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'xc6uKEJ1wl0')">
+      <img src="https://img.youtube.com/vi/xc6uKEJ1wl0/maxresdefault.jpg" alt="ComfyUI Trellis 3D generation" onerror="this.src='https://img.youtube.com/vi/xc6uKEJ1wl0/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <div class="style-section-heading">
+    <h3 data-en="02 — Retopo vs Original · Blender Comparison" data-ja="02 — リトポ vs 元メッシュ · Blender比較">02 — Retopo vs Original · Blender Comparison</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Raw AI mesh: 80K–150K polys, no edge-flow, not deformation-safe" data-ja="生AIメッシュ：8万〜15万ポリゴン、エッジフローなし、変形非対応">Raw AI mesh: 80K–150K polys, no edge-flow, not deformation-safe</li>
+        <li data-en="Retopologised mesh: ~8K polys, clean quads, animation-ready edge loops" data-ja="リトポメッシュ：約8千ポリゴン、クリーンなクワッド、アニメーション対応エッジループ">Retopologised mesh: ~8K polys, clean quads, animation-ready edge loops</li>
+        <li data-en="AI handles the sculpt and surface detail — human handles the craft layer" data-ja="AIがスカルプトと表面ディテールを担当 — 人間がクラフト層を担当">AI handles the sculpt and surface detail — human handles the craft layer</li>
+        <li data-en="Hybrid saves ~35–40% compared to building the full character from scratch" data-ja="フルスクラッチ制作と比べてハイブリッドで約35〜40%の時間削減">Hybrid saves ~35–40% compared to building the full character from scratch</li>
+        <li data-en="Validates the hybrid pipeline as viable for game-ready character production" data-ja="ゲーム対応キャラクター制作におけるハイブリッドパイプラインの有効性を実証">Validates the hybrid pipeline as viable for game-ready character production</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'My7RJah7eZY')">
+      <img src="https://img.youtube.com/vi/My7RJah7eZY/maxresdefault.jpg" alt="Blender retopo vs AI mesh comparison" onerror="this.src='https://img.youtube.com/vi/My7RJah7eZY/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- ── ONLINE 3D AI MODELS ── -->
+  <div class="game-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="3D Model Testing · 3daistudio.com" data-ja="3Dモデルテスト · 3daistudio.com">3D Model Testing · 3daistudio.com</span>
+    <h2 data-en="Online AI 3D Model Generation" data-ja="オンラインAI 3Dモデル生成">Online AI 3D Model Generation</h2>
+    <p data-html="true" data-en="Tested the full image-to-3D-to-rig workflow using <strong style=&quot;color:#fff;&quot;>3daistudio.com</strong> — a single platform that runs multiple AI model generators (Tripo, Meshy and others) side by side, letting you compare results before committing to one. The workflow starts with AI-generated reference images and ends with a rigged, posable character — entirely inside online tools, no local GPU required." data-ja="<strong style=&quot;color:#fff;&quot;>3daistudio.com</strong>を使った画像→3D→リグの全ワークフローをテストしました。複数のAIモデルジェネレーター（Tripo、Meshyなど）を並べて比較できる単一プラットフォームです。ワークフローはAI生成リファレンス画像から始まり、リグ済みのポーズ可能なキャラクターで終わります — 全てオンラインツール内、ローカルGPU不要。">Tested the full image-to-3D-to-rig workflow using <strong style="color:#fff;">3daistudio.com</strong> — a single platform that runs multiple AI model generators (Tripo, Meshy and others) side by side, letting you compare results before committing to one. The workflow starts with AI-generated reference images and ends with a rigged, posable character — entirely inside online tools, no local GPU required.</p>
+    <p style="margin-top:0.5rem;font-size:0.9rem;color:#888;line-height:1.7;"
+       data-html="true"
+       data-en="<strong style=&quot;color:#ccc;&quot;>Workflow:</strong> Generate front + side view images in ChatGPT or Gemini → feed both views into 3daistudio.com → run Tripo and Meshy in parallel and pick the best result → auto-rig the chosen mesh inside the same platform → export game-ready."
+       data-ja="<strong style=&quot;color:#ccc;&quot;>ワークフロー：</strong>ChatGPTまたはGeminiで正面・側面の参照画像を生成 → 両ビューを3daistudio.comに入力 → TripoとMeshyを並列実行しベストな結果を選択 → 同プラットフォーム内で選択メッシュを自動リグ → ゲーム対応でエクスポート。">
+      <strong style="color:#ccc;">Workflow:</strong> Generate front + side view images in ChatGPT or Gemini → feed both views into 3daistudio.com → run Tripo and Meshy in parallel and pick the best result → auto-rig the chosen mesh inside the same platform → export game-ready.
+    </p>
+    <p style="margin-top:0.8rem;">
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="Images —" data-ja="画像 —">Images —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> ChatGPT &nbsp;·&nbsp; Gemini</span>
+      &nbsp;&nbsp;
+      <span style="color:var(--muted);font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;" data-en="3D + Rigging —" data-ja="3D + リギング —">3D + Rigging —</span>
+      <span style="color:#aaa;font-size:0.85rem;"> Tripo &nbsp;·&nbsp; Meshy &nbsp;·&nbsp; 3daistudio.com</span>
+    </p>
+  </div>
+
+  <!-- Reference images -->
+  <div class="style-section-heading">
+    <h3 data-en="01 — AI Reference Images (Front + Side)" data-ja="01 — AIリファレンス画像（正面・側面）">01 — AI Reference Images (Front + Side)</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Character designed entirely using ChatGPT / Gemini image generation" data-ja="ChatGPT / Geminiの画像生成のみでキャラクターをデザイン">Character designed entirely using ChatGPT / Gemini image generation</li>
+        <li data-en="Front view and side view created separately to give the 3D model generator full spatial data" data-ja="3Dモデルジェネレーターに完全な空間データを与えるため正面・側面を別々に作成">Front view and side view created separately to give the 3D model generator full spatial data</li>
+        <li data-en="Two-view input dramatically improves mesh accuracy over single-image generation" data-ja="2ビュー入力により1枚画像生成より大幅にメッシュ精度が向上">Two-view input dramatically improves mesh accuracy over single-image generation</li>
+        <li data-en="No concept artist involved — full character sheet produced in under 30 minutes" data-ja="コンセプトアーティスト不要 — 30分以内にフルキャラクターシートを作成">No concept artist involved — full character sheet produced in under 30 minutes</li>
+      </ul>
+    </div>
+    <div style="flex:1.6;display:flex;gap:0.75rem;">
+      <div style="flex:1;aspect-ratio:1/1;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#000;cursor:zoom-in;" onclick="openLightbox('images/online-llm/ref-front.png')">
+        <img src="images/online-llm/ref-front.png" alt="Character front view" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s,opacity 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.opacity='0.8'" onmouseout="this.style.transform='scale(1)';this.style.opacity='1'">
+      </div>
+      <div style="flex:1;aspect-ratio:1/1;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#000;cursor:zoom-in;" onclick="openLightbox('images/online-llm/ref-side.png')">
+        <img src="images/online-llm/ref-side.png" alt="Character side view" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s,opacity 0.3s;" onmouseover="this.style.transform='scale(1.03)';this.style.opacity='0.8'" onmouseout="this.style.transform='scale(1)';this.style.opacity='1'">
+      </div>
+    </div>
+  </div>
+
+  <!-- Model generation video -->
+  <div class="style-section-heading">
+    <h3 data-en="02 — 3D Model Generation · Tripo vs Meshy" data-ja="02 — 3Dモデル生成 · Tripo vs Meshy">02 — 3D Model Generation · Tripo vs Meshy</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Both Tripo and Meshy run simultaneously from the same reference — pick the best output" data-ja="TripoとMeshyを同じリファレンスから同時実行 — ベストな出力を選択">Both Tripo and Meshy run simultaneously from the same reference — pick the best output</li>
+        <li data-en="Full PBR textured mesh generated in 2–4 minutes per model" data-ja="完全PBRテクスチャ付きメッシュをモデルあたり2〜4分で生成">Full PBR textured mesh generated in 2–4 minutes per model</li>
+        <li data-en="3daistudio.com comparison view lets you judge topology, surface detail and texture quality side by side" data-ja="3daistudio.comの比較ビューでトポロジー、表面ディテール、テクスチャ品質を並べて判定">3daistudio.com comparison view lets you judge topology, surface detail and texture quality side by side</li>
+        <li data-en="Props and environment assets reach near-game-ready quality; characters need retopo" data-ja="プロップや環境アセットはほぼゲーム対応品質に到達；キャラクターはリトポが必要">Props and environment assets reach near-game-ready quality; characters need retopo</li>
+        <li data-en="No local GPU needed — runs fully in the browser on any machine" data-ja="ローカルGPU不要 — どのマシンでもブラウザ上で完全動作">No local GPU needed — runs fully in the browser on any machine</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'qoW8k4lHF0Y')">
+      <img src="https://img.youtube.com/vi/qoW8k4lHF0Y/maxresdefault.jpg" alt="Tripo Meshy 3D model generation" onerror="this.src='https://img.youtube.com/vi/qoW8k4lHF0Y/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- Rigging video -->
+  <div class="style-section-heading">
+    <h3 data-en="03 — Auto-Rigging the AI Mesh" data-ja="03 — AIメッシュの自動リグ">03 — Auto-Rigging the AI Mesh</h3>
+  </div>
+
+  <div class="project-row">
+    <div class="project-info">
+      <ul>
+        <li data-en="Auto-rig applied inside 3daistudio.com — no external DCC needed for initial pose testing" data-ja="3daistudio.com内で自動リグ適用 — 初期ポーズテストに外部DCC不要">Auto-rig applied inside 3daistudio.com — no external DCC needed for initial pose testing</li>
+        <li data-en="Humanoid skeleton mapped automatically to the AI-generated mesh" data-ja="ヒューマノイドスケルトンがAI生成メッシュに自動マッピング">Humanoid skeleton mapped automatically to the AI-generated mesh</li>
+        <li data-en="Good enough for previs, pitch videos and prototype gameplay — not production-hero quality" data-ja="プリビズ、ピッチ動画、プロトタイプゲームプレイには十分 — プロダクションヒーロー品質ではない">Good enough for previs, pitch videos and prototype gameplay — not production-hero quality</li>
+        <li data-en="Entire image-to-rigged-character pipeline completed in under an hour, online only" data-ja="画像からリグ済みキャラクターまでのパイプライン全体を1時間以内にオンラインのみで完了">Entire image-to-rigged-character pipeline completed in under an hour, online only</li>
+      </ul>
+    </div>
+    <div class="project-video" onclick="playVideo(this,'nZBzfFqP7yI')">
+      <img src="https://img.youtube.com/vi/nZBzfFqP7yI/maxresdefault.jpg" alt="Auto-rigging AI 3D model" onerror="this.src='https://img.youtube.com/vi/nZBzfFqP7yI/hqdefault.jpg'">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- ── AI REPORT ── -->
+  <div class="game-header" style="margin-top:3rem;">
+    <span class="game-tag" data-en="Internal Report · May 2026" data-ja="社内レポート · 2026年5月">Internal Report · May 2026</span>
+    <h2 data-en="AI in Art Production" data-ja="アート制作におけるAI">AI in Art Production</h2>
+    <p data-en="A production-grounded assessment of where AI tooling delivers real time savings — and where it doesn't — across the four critical stages of game art creation. Tested on live assets across characters, props, environments and animations. Submitted to studio leadership and the green light team." data-ja="ゲームアート制作の4つの重要ステージにわたって、AIツールが実際の時間削減をもたらすか否かをプロダクション視点で評価したレポートです。キャラクター、プロップ、環境、アニメーションの実際のアセットでテスト。スタジオリーダーシップとグリーンライトチームに提出しました。">A production-grounded assessment of where AI tooling delivers real time savings — and where it doesn't — across the four critical stages of game art creation. Tested on live assets across characters, props, environments and animations. Submitted to studio leadership and the green light team.</p>
+    <div style="margin-top:1.2rem;">
+      <a href="files/AI_in_Art_Production_Report.html" class="download-btn" download="AI_in_Art_Production_Report.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.2rem;background:var(--accent);color:#111;font-size:0.82rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:4px;" data-en="⬇ Download Report" data-ja="⬇ レポートをダウンロード">⬇ Download Report</a>
+      <a href="files/AI_in_Art_Production_Report.html" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.2rem;background:transparent;color:var(--text);font-size:0.82rem;font-weight:600;text-decoration:none;border-radius:4px;border:1px solid #444;margin-left:0.8rem;" data-en="↗ View in Browser" data-ja="↗ ブラウザで見る">↗ View in Browser</a>
+    </div>
+  </div>
+
+  <!-- Pipeline maturity overview -->
+  <div style="max-width:1100px;margin:1.5rem auto 0;padding:0 2rem;">
+    <div style="background:#1a1a1a;border:1px solid var(--border);border-radius:12px;padding:1.8rem 2rem;">
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;" data-en="AI Maturity Across the Pipeline" data-ja="パイプライン全体のAI成熟度">AI Maturity Across the Pipeline</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
+
+        <!-- Concept Art -->
+        <div style="background:#111;border:1px solid #2a2a2a;border-top:3px solid #4caf7d;border-radius:8px;padding:1.2rem 1rem;">
+          <div style="font-size:1.3rem;margin-bottom:0.5rem;">🎨</div>
+          <div style="font-size:0.8rem;font-weight:700;color:#fff;margin-bottom:0.3rem;" data-en="Concept Art" data-ja="コンセプトアート">Concept Art</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#4caf7d;line-height:1;">50–70%</div>
+          <div style="font-size:0.7rem;color:#888;margin-bottom:0.8rem;" data-en="time saved" data-ja="時間削減">time saved</div>
+          <div style="display:flex;gap:3px;">
+            <div style="width:10px;height:10px;border-radius:2px;background:#4caf7d;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4caf7d;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4caf7d;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4caf7d;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+          </div>
+          <div style="font-size:0.7rem;color:#4caf7d;margin-top:0.5rem;font-weight:600;" data-en="Production-Ready" data-ja="プロダクション対応">Production-Ready</div>
+        </div>
+
+        <!-- 3D Modeling -->
+        <div style="background:#111;border:1px solid #2a2a2a;border-top:3px solid var(--accent);border-radius:8px;padding:1.2rem 1rem;">
+          <div style="font-size:1.3rem;margin-bottom:0.5rem;">🧊</div>
+          <div style="font-size:0.8rem;font-weight:700;color:#fff;margin-bottom:0.3rem;" data-en="3D Modeling" data-ja="3Dモデリング">3D Modeling</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">30–40%</div>
+          <div style="font-size:0.7rem;color:#888;margin-bottom:0.8rem;" data-en="time saved" data-ja="時間削減">time saved</div>
+          <div style="display:flex;gap:3px;">
+            <div style="width:10px;height:10px;border-radius:2px;background:var(--accent);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:var(--accent);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:var(--accent);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+          </div>
+          <div style="font-size:0.7rem;color:var(--accent);margin-top:0.5rem;font-weight:600;" data-en="Hybrid Required" data-ja="ハイブリッド必須">Hybrid Required</div>
+        </div>
+
+        <!-- Rigging & Animation -->
+        <div style="background:#111;border:1px solid #2a2a2a;border-top:3px solid #e05060;border-radius:8px;padding:1.2rem 1rem;">
+          <div style="font-size:1.3rem;margin-bottom:0.5rem;">🦴</div>
+          <div style="font-size:0.8rem;font-weight:700;color:#fff;margin-bottom:0.3rem;" data-en="Rigging &amp; Anim" data-ja="リギング＆アニム">Rigging & Anim</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#e05060;line-height:1;">&lt;10%</div>
+          <div style="font-size:0.7rem;color:#888;margin-bottom:0.8rem;" data-en="net saving" data-ja="ネット削減">net saving</div>
+          <div style="display:flex;gap:3px;">
+            <div style="width:10px;height:10px;border-radius:2px;background:#e05060;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#2a2a2a;"></div>
+          </div>
+          <div style="font-size:0.7rem;color:#e05060;margin-top:0.5rem;font-weight:600;" data-en="Not Ready" data-ja="未対応">Not Ready</div>
+        </div>
+
+        <!-- Game Engine -->
+        <div style="background:#111;border:1px solid #2a2a2a;border-top:3px solid #4a90d0;border-radius:8px;padding:1.2rem 1rem;">
+          <div style="font-size:1.3rem;margin-bottom:0.5rem;">⚙️</div>
+          <div style="font-size:0.8rem;font-weight:700;color:#fff;margin-bottom:0.3rem;" data-en="Game Engine" data-ja="ゲームエンジン">Game Engine</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#4a90d0;line-height:1;">Unity</div>
+          <div style="font-size:0.7rem;color:#888;margin-bottom:0.8rem;" data-en="recommendation" data-ja="推奨">recommendation</div>
+          <div style="display:flex;gap:3px;">
+            <div style="width:10px;height:10px;border-radius:2px;background:#4a90d0;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4a90d0;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4a90d0;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4a90d0;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4a90d0;"></div>
+          </div>
+          <div style="font-size:0.7rem;color:#4a90d0;margin-top:0.5rem;font-weight:600;" data-en="Stay on Unity" data-ja="Unityを維持">Stay on Unity</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom summary bar -->
+      <div style="margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.68rem;color:#888;text-transform:uppercase;letter-spacing:2px;font-weight:700;" data-en="Realistic Blended Saving" data-ja="現実的な総合削減率">Realistic Blended Saving</div>
+          <div style="font-size:1.5rem;font-weight:800;color:var(--accent);">20–25%</div>
+        </div>
+        <div style="flex:1;font-size:0.8rem;color:#888;line-height:1.6;min-width:200px;" data-en="AI compresses ideation and base-asset stages. Craft stages — clean topology, deformation rigs, signature animation — remain manual. Well short of the 50%+ vendors claim." data-ja="AIはアイデア出しとベースアセット段階を圧縮します。クラフト段階（クリーントポロジー、変形リグ、個性的なアニメーション）は手動のまま。ベンダーが主張する50%以上には到底及びません。">AI compresses ideation and base-asset stages. Craft stages — clean topology, deformation rigs, signature animation — remain manual. Well short of the 50%+ vendors claim.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin:2rem auto 3rem;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+    <div style="background:#1a1a1a;border:1px solid var(--border);border-radius:8px;padding:1.2rem;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;" data-en="Key Finding" data-ja="主要知見">Key Finding</div>
+      <div style="font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:0.4rem;" data-en="Hosted for Direction, Local for Volume" data-ja="方向性にはホスト型、量産にはローカル型">Hosted for Direction, Local for Volume</div>
+      <div style="font-size:0.8rem;color:#888;line-height:1.6;" data-en="Use ChatGPT / Gemini for finalization and direction. Use local models (SDXL, FLUX, Trellis) for cost-controlled production volume. Studios doing all-hosted burn tokens." data-ja="方向性と仕上げにはChatGPT / Geminiを使用。コスト管理された量産にはローカルモデル（SDXL、FLUX、Trellis）を使用。全てホスト型で行うスタジオはトークンを浪費します。">Use ChatGPT / Gemini for finalization and direction. Use local models (SDXL, FLUX, Trellis) for cost-controlled production volume. Studios doing all-hosted burn tokens.</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid var(--border);border-radius:8px;padding:1.2rem;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;" data-en="Key Finding" data-ja="主要知見">Key Finding</div>
+      <div style="font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:0.4rem;" data-en="AI Animation Claims Are Overstated" data-ja="AIアニメーションの主張は誇張されている">AI Animation Claims Are Overstated</div>
+      <div style="font-size:0.8rem;color:#888;line-height:1.6;" data-en="Auto-rigging and animation generation are not production-ready. Plan rigging and animation around manual craft, asset packs and mocap-cleanup tools." data-ja="自動リグとアニメーション生成はプロダクション対応ではありません。リグとアニメーションは手動クラフト、アセットパック、モーキャプクリーンアップツールを中心に計画してください。">Auto-rigging and animation generation are not production-ready. Plan rigging and animation around manual craft, asset packs and mocap-cleanup tools.</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid var(--border);border-radius:8px;padding:1.2rem;">
+      <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;" data-en="Key Finding" data-ja="主要知見">Key Finding</div>
+      <div style="font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:0.4rem;" data-en="Human Direction Is the Bottleneck" data-ja="人間の方向性がボトルネック">Human Direction Is the Bottleneck</div>
+      <div style="font-size:0.8rem;color:#888;line-height:1.6;" data-en="AI scales taste, it does not replace it. The hire that matters most is the art director who curates output — not the prompt engineer." data-ja="AIはセンスを増幅しますが、置き換えることはできません。最も重要な採用は出力をキュレーションするアートディレクターです — プロンプトエンジニアではありません。">AI scales taste, it does not replace it. The hire that matters most is the art director who curates output — not the prompt engineer.</div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <footer>
+    &copy; 2026 Sachin Desai &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/sachindesai7" target="_blank">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="index.html" data-en="Contact" data-ja="お問い合わせ">Contact</a>
+  </footer>
+
+  <script src="i18n.js?v=20260718"></script>
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('navLinks');
+      var hamburger = document.querySelector('.hamburger');
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+
+    function playVideo(el, videoId) {
+      el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+      el.style.cursor = 'default';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Color groups by game-header / hr.style-divider boundaries.
+      // All project-rows within the same game get the same color.
+      // hr.style-divider (used between Style 01/02 comparisons) toggles the color.
+      var postIndex = 0;
+      var currentCls = null;
+      document.querySelectorAll('.game-header, hr.style-divider, .project-row').forEach(function(el) {
+        if (el.classList.contains('game-header') || el.tagName.toLowerCase() === 'hr') {
+          postIndex++;
+          currentCls = postIndex % 2 === 0 ? 'row-odd' : 'row-even';
+          if (el.classList.contains('game-header')) {
+            el.classList.add(currentCls);
+          }
+          return;
+        }
+        if (!currentCls) return;
+        el.classList.add(currentCls);
+        var prev = el.previousElementSibling;
+        if (prev && prev.classList.contains('style-section-heading')) {
+          prev.classList.add(currentCls);
+        }
+        var next = el.nextElementSibling;
+        if (next && next.classList.contains('image-gallery')) {
+          next.classList.add(currentCls);
+          el.classList.add('has-gallery');
+        }
+      });
+
+      var isMobile = window.innerWidth <= 768;
+      if (isMobile) return;
+      document.querySelectorAll('.project-video[onclick], .project-video-portrait[onclick]').forEach(function(el) {
+        var match = el.getAttribute('onclick').match(/'([^']+)'\)/);
+        if (!match) return;
+        var videoId = match[1];
+        el.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId +
+          '?autoplay=1&mute=1&loop=1&playlist=' + videoId +
+          '&controls=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+        el.style.cursor = 'default';
+      });
+    });
+
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('lightboxImg').src = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
